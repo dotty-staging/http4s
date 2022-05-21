@@ -82,7 +82,7 @@ private[server] object ServerHelpers extends ServerHelpersPlatform {
       tlsInfoOpt: Option[(TLSContext[F], TLSParameters)],
       shutdown: Shutdown[F],
       // Defaults
-      errorHandler: Throwable => F[Response[F]],
+      errorHandler: (Throwable => F[Response[F]]),
       onWriteFailure: (Option[Request[F]], Response[F], Throwable) => F[Unit],
       maxConnections: Int,
       receiveBufferSize: Int,
@@ -133,7 +133,7 @@ private[server] object ServerHelpers extends ServerHelpersPlatform {
       tlsInfoOpt: Option[(TLSContext[F], TLSParameters)],
       shutdown: Shutdown[F],
       // Defaults
-      errorHandler: Throwable => F[Response[F]],
+      errorHandler: (Throwable => F[Response[F]]),
       onWriteFailure: (Option[Request[F]], Response[F], Throwable) => F[Unit],
       maxConnections: Int,
       receiveBufferSize: Int,

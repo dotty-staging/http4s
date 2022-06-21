@@ -37,7 +37,7 @@ import org.http4s.Response
 import org.http4s.headers.`Transfer-Encoding`
 
 import scala.annotation.nowarn
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters.
 
 object RoutesToNettyAdapter {
   def apply[F[_]](routes: HttpRoutes[F], dispatcher: Dispatcher[F])(implicit

@@ -12,3 +12,5 @@ addSbtPlugin("io.spray" % "sbt-revolver" % "0.9.1")
 addSbtPlugin("pl.project13.scala" % "sbt-jmh" % "0.4.3")
 addSbtPlugin("org.scala-js" % "sbt-scalajs" % "1.10.1")
 addSbtPlugin("org.scoverage" % "sbt-scoverage" % "2.0.0")
+
+ThisBuild / libraryDependencySchemes += "org.scala-lang.modules" %% "scala-xml" % VersionScheme.Always

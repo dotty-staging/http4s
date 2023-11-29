@@ -40,7 +40,7 @@ object UrlFormLifter {
         val flatForm = form.values.toVector.flatMap { case (k, vs) =>
           vs.toVector.map(v => (k, Some(v)))
         }
-        val params = req.uri.query.toVector ++ flatForm: Vector[(String, Option[String])]
+        val params: Vector[(String, Option[String])] = req.uri.query.toVector ++ flatForm
         val newQuery = Query(params: _*)
 
         val newRequest = req

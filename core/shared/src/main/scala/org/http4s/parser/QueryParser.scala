@@ -60,8 +60,8 @@ private[http4s] class QueryParser(
   ): Option[String] = {
     val valAcc = new StringBuilder(InitialBufferCapactiy)
 
-    var error: String = null
-    var key: String = null
+    var error: String | Null = null
+    var key: String | Null = null
     var state: State = KEY
 
     def appendValue(): Unit = {
@@ -71,7 +71,7 @@ private[http4s] class QueryParser(
         valAcc.clear()
         acc(k, None)
       } else {
-        val k = decodeParam(key)
+        val k = decodeParam(key.nn)
         key = null
         val s = valAcc.result()
         valAcc.clear()

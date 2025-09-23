@@ -71,14 +71,14 @@ private[authentication] class NonceKeeper(
     * @return A fresh nonce.
     */
   def newNonce(): String = {
-    var n: Nonce = null
+    var n: Nonce | Null = null
     nonces.synchronized {
       checkStale()
       n = Nonce.gen(bits)
-      while (nonces.get(n.data) != null) n = Nonce.gen(bits)
-      nonces.put(n.data, n)
+      while (nonces.get(n.nn.data) != null) n = Nonce.gen(bits)
+      nonces.put(n.nn.data, n)
     }
-    n.data
+    n.nn.data
   }
 
   /** Checks if the nonce {@link data} is known and the {@link nc} value is

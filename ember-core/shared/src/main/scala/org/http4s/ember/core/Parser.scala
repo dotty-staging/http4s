@@ -74,13 +74,13 @@ private[ember] object Parser {
       import scala.collection.mutable.ListBuffer
       var idx = initIndex
       var state = false
-      var throwable: Throwable = null
+      var throwable: Throwable | Null = null
       var complete = false
       var chunked: Boolean = false
       var contentLength: Option[Long] = None
 
       val headers: ListBuffer[Header.Raw] = ListBuffer()
-      var name: String = null
+      var name: String | Null = null
       var start = initIndex
       val upperBound = Math.min(message.size - 1, maxHeaderSize)
 
@@ -109,7 +109,7 @@ private[ember] object Parser {
             // extract header value, trim leading and trailing whitespace
             val hValue = new String(message, start, idx - start - 1).trim
 
-            val hName = name // copy var to val
+            val hName = name.nn // copy var to val
             name = null // set name back to null
             val newHeader = Header.Raw(CIString(hName), hValue) // create header
             if (hName.equalsIgnoreCase(contentLengthS)) { // Check if this is content-length.
@@ -166,10 +166,10 @@ private[ember] object Parser {
         var state: Byte = 0
         var complete = false
 
-        var throwable: Throwable = null
-        var method: Method = null
-        var uri: Uri = null
-        var httpVersion: HttpVersion = null
+        var throwable: Throwable | Null = null
+        var method: Method | Null = null
+        var uri: Uri | Null = null
+        var httpVersion: HttpVersion | Null = null
         val upperBound = Math.min(message.size - 1, maxHeaderSize)
 
         var start = 0
@@ -234,12 +234,12 @@ private[ember] object Parser {
       final case class ParsePreludeError(
           message: String,
           caused: Option[Throwable],
-          method: Option[Method],
-          uri: Option[Uri],
-          httpVersion: Option[HttpVersion],
+          method: Option[Method | Null],
+          uri: Option[Uri | Null],
+          httpVersion: Option[HttpVersion | Null],
       ) extends Exception(
             s"Parse Prelude Error Encountered - Message: $message - Partially Decoded: $method $uri $httpVersion",
-            caused.orNull,
+            caused.orNull.asInstanceOf[Throwable | Null],
           )
     }
 
@@ -354,12 +354,12 @@ private[ember] object Parser {
       ): F[Either[Unit, RespPrelude]] = {
         var complete = false
         var idx = 0
-        var throwable: Throwable = null
-        var httpVersion: HttpVersion = null
+        var throwable: Throwable | Null = null
+        var httpVersion: HttpVersion | Null = null
 
-        var codeS: String = null
+        var codeS: String | Null = null
         // val reason: String = null
-        var status: Status = null
+        var status: Status | Null = null
         var start = 0
         var state = 0 // 0 Is for HttpVersion, 1 for Status Code, 2 For Reason Phrase
         val upperBound = Math.min(buffer.size - 1, maxHeaderSize)
@@ -389,7 +389,7 @@ private[ember] object Parser {
             case 2 =>
               if (value == lf && (idx > 0 && buffer(idx - 1) == cr)) {
                 try {
-                  val codeInt = codeS.toInt
+                  val codeInt = codeS.nn.toInt
                   Status.fromInt(codeInt) match {
                     case Left(e) =>
                       throw e
@@ -418,7 +418,7 @@ private[ember] object Parser {
       final case class RespPreludeError(message: String, cause: Option[Throwable])
           extends Exception(
             s"Received Error while parsing prelude - Message: $message - ${cause.map(_.getMessage)}",
-            cause.orNull,
+            cause.orNull.asInstanceOf[Throwable | Null],
           )
     }
   }

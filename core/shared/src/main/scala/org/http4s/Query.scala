@@ -47,7 +47,7 @@ import scala.collection.mutable.ListBuffer
 final class Query private (value: Either[Vector[KeyValue], String])
     extends QueryOps
     with Renderable {
-  private[this] var _pairs: Vector[KeyValue] = null
+  private[this] var _pairs: Vector[KeyValue] = _
 
   def pairs: Vector[KeyValue] = {
     if (_pairs == null) {

@@ -36,7 +36,7 @@ trait LawAdapter {
     propLabel -> PropF
       .forAllF { (a: A) =>
         val isEq = prop(a)
-        (isEq.lhs, isEq.rhs).mapN(_ === _).flatMap(b => F.catchOnly[AssertionError](assert(b)))
+        (isEq.lhs, isEq.rhs).mapN(_ === _).flatMap(b => F.catchOnly[AssertionError | Null](assert(b)))
       }
       .map(p => p.copy(labels = p.labels + propLabel))
 

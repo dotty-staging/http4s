@@ -34,7 +34,7 @@ private[http4s] object AutoCloseableResource {
   private[http4s] def resource[R <: AutoCloseable, A](resource: R)(body: R => A): A = {
     if (resource == null) throw new NullPointerException("null resource")
 
-    var toThrow: Throwable = null
+    var toThrow: Throwable | Null = null
 
     try body(resource)
     catch {

@@ -18,7 +18,7 @@
 package org.http4s
 
 private[http4s] trait MimeDB {
-  private var _allMediaTypes: List[MediaType] = null
+  private var _allMediaTypes: List[MediaType] = _
   def allMediaTypes: List[MediaType] = {
     if (_allMediaTypes eq null)
       _allMediaTypes =
@@ -1093,7 +1093,7 @@ private[http4s] trait MimeDB {
         new MediaType("application", "vnd.3gpp.srvcc-info+xml", Compressible, NotBinary)
       lazy val `vnd.3gpp.state-and-event-info+xml`: MediaType =
         new MediaType("application", "vnd.3gpp.state-and-event-info+xml", Compressible, NotBinary)
-      private var _part_0: List[MediaType] = null
+      private var _part_0: List[MediaType] = _
       def part_0: List[MediaType] = {
         if (_part_0 eq null)
           _part_0 = List(
@@ -2950,7 +2950,7 @@ private[http4s] trait MimeDB {
         new MediaType("application", "vnd.ms-outlook", Uncompressible, NotBinary, List("msg"))
       lazy val `vnd.ms-package.obfuscated-opentype`: MediaType =
         new MediaType("application", "vnd.ms-package.obfuscated-opentype", Compressible, NotBinary)
-      private var _part_1: List[MediaType] = null
+      private var _part_1: List[MediaType] = _
       def part_1: List[MediaType] = {
         if (_part_1 eq null)
           _part_1 = List(
@@ -5179,7 +5179,7 @@ private[http4s] trait MimeDB {
         new MediaType("application", "x-7z-compressed", Uncompressible, Binary, List("7z"))
       lazy val `x-abiword`: MediaType =
         new MediaType("application", "x-abiword", Compressible, NotBinary, List("abw"))
-      private var _part_2: List[MediaType] = null
+      private var _part_2: List[MediaType] = _
       def part_2: List[MediaType] = {
         if (_part_2 eq null)
           _part_2 = List(
@@ -6146,7 +6146,7 @@ private[http4s] trait MimeDB {
         new MediaType("application", "zip", Uncompressible, Binary, List("zip"))
       lazy val `zlib`: MediaType = new MediaType("application", "zlib", Compressible, NotBinary)
       lazy val `zstd`: MediaType = new MediaType("application", "zstd", Compressible, NotBinary)
-      private var _part_3: List[MediaType] = null
+      private var _part_3: List[MediaType] = _
       def part_3: List[MediaType] = {
         if (_part_3 eq null)
           _part_3 = List(
@@ -6337,7 +6337,7 @@ private[http4s] trait MimeDB {
       with application_parts.application_1
       with application_parts.application_2
       with application_parts.application_3 {
-    private var _all: List[MediaType] = null
+    private var _all: List[MediaType] = _
     def all: List[MediaType] = {
       if (_all eq null) _all = Nil ++ part_0 ++ part_1 ++ part_2 ++ part_3
       else ()
@@ -6601,7 +6601,7 @@ private[http4s] trait MimeDB {
     lazy val `x-tta`: MediaType = new MediaType("audio", "x-tta", Compressible, Binary)
     lazy val `x-wav`: MediaType = new MediaType("audio", "x-wav", Compressible, Binary, List("wav"))
     lazy val `xm`: MediaType = new MediaType("audio", "xm", Compressible, Binary, List("xm"))
-    private var _all: List[MediaType] = null
+    private var _all: List[MediaType] = _
     def all: List[MediaType] = {
       if (_all eq null)
         _all = List(
@@ -6808,7 +6808,7 @@ private[http4s] trait MimeDB {
     lazy val `x-pdb`: MediaType = new MediaType("chemical", "x-pdb", Compressible, NotBinary)
     lazy val `x-xyz`: MediaType =
       new MediaType("chemical", "x-xyz", Compressible, NotBinary, List("xyz"))
-    private var _all: List[MediaType] = null
+    private var _all: List[MediaType] = _
     def all: List[MediaType] = {
       if (_all eq null) _all = List(`x-cdx`, `x-cif`, `x-cmdf`, `x-cml`, `x-csml`, `x-pdb`, `x-xyz`)
       else ()
@@ -6825,7 +6825,7 @@ private[http4s] trait MimeDB {
       new MediaType("font", "woff", Compressible, NotBinary, List("woff"))
     lazy val `woff2`: MediaType =
       new MediaType("font", "woff2", Compressible, NotBinary, List("woff2"))
-    private var _all: List[MediaType] = null
+    private var _all: List[MediaType] = _
     def all: List[MediaType] = {
       if (_all eq null) _all = List(`collection`, `otf`, `sfnt`, `ttf`, `woff`, `woff2`)
       else ()
@@ -7000,7 +7000,7 @@ private[http4s] trait MimeDB {
       new MediaType("image", "x-xpixmap", Compressible, Binary, List("xpm"))
     lazy val `x-xwindowdump`: MediaType =
       new MediaType("image", "x-xwindowdump", Compressible, Binary, List("xwd"))
-    private var _all: List[MediaType] = null
+    private var _all: List[MediaType] = _
     def all: List[MediaType] = {
       if (_all eq null)
         _all = List(
@@ -7152,7 +7152,7 @@ private[http4s] trait MimeDB {
       new MediaType("message", "vnd.si.simp", Compressible, NotBinary)
     lazy val `vnd.wfa.wsc`: MediaType =
       new MediaType("message", "vnd.wfa.wsc", Compressible, NotBinary, List("wsc"))
-    private var _all: List[MediaType] = null
+    private var _all: List[MediaType] = _
     def all: List[MediaType] = {
       if (_all eq null)
         _all = List(
@@ -7248,7 +7248,7 @@ private[http4s] trait MimeDB {
       new MediaType("model", "x3d+xml", Compressible, NotBinary, List("x3d", "x3dz"))
     lazy val `x3d-vrml`: MediaType =
       new MediaType("model", "x3d-vrml", Compressible, NotBinary, List("x3dv"))
-    private var _all: List[MediaType] = null
+    private var _all: List[MediaType] = _
     def all: List[MediaType] = {
       if (_all eq null)
         _all = List(
@@ -7321,7 +7321,7 @@ private[http4s] trait MimeDB {
       new MediaType("multipart", "voice-message", Compressible, NotBinary)
     lazy val `x-mixed-replace`: MediaType =
       new MediaType("multipart", "x-mixed-replace", Compressible, NotBinary)
-    private var _all: List[MediaType] = null
+    private var _all: List[MediaType] = _
     def all: List[MediaType] = {
       if (_all eq null)
         _all = List(
@@ -7572,7 +7572,7 @@ private[http4s] trait MimeDB {
       new MediaType("text", "xml-external-parsed-entity", Compressible, NotBinary)
     lazy val `yaml`: MediaType =
       new MediaType("text", "yaml", Compressible, NotBinary, List("yaml", "yml"))
-    private var _all: List[MediaType] = null
+    private var _all: List[MediaType] = _
     def all: List[MediaType] = {
       if (_all eq null)
         _all = List(
@@ -7873,7 +7873,7 @@ private[http4s] trait MimeDB {
     lazy val `x-sgi-movie`: MediaType =
       new MediaType("video", "x-sgi-movie", Compressible, Binary, List("movie"))
     lazy val `x-smv`: MediaType = new MediaType("video", "x-smv", Compressible, Binary, List("smv"))
-    private var _all: List[MediaType] = null
+    private var _all: List[MediaType] = _
     def all: List[MediaType] = {
       if (_all eq null)
         _all = List(
@@ -7989,7 +7989,7 @@ private[http4s] trait MimeDB {
   object x_conference {
     lazy val `x-cooltalk`: MediaType =
       new MediaType("x-conference", "x-cooltalk", Compressible, NotBinary, List("ice"))
-    private var _all: List[MediaType] = null
+    private var _all: List[MediaType] = _
     def all: List[MediaType] = {
       if (_all eq null) _all = List(`x-cooltalk`)
       else ()
@@ -8000,7 +8000,7 @@ private[http4s] trait MimeDB {
     lazy val `x-fragment`: MediaType =
       new MediaType("x-shader", "x-fragment", Compressible, NotBinary)
     lazy val `x-vertex`: MediaType = new MediaType("x-shader", "x-vertex", Compressible, NotBinary)
-    private var _all: List[MediaType] = null
+    private var _all: List[MediaType] = _
     def all: List[MediaType] = {
       if (_all eq null) _all = List(`x-fragment`, `x-vertex`)
       else ()

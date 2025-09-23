@@ -49,8 +49,8 @@ private[http4s] class HandlersToNettyAdapter private (
 
   private val logger = getLogger(this.getClass)
 
-  private var currentRequest: HttpRequest = null
-  private var currentHandler: Handler = null
+  private var currentRequest: HttpRequest = _
+  private var currentHandler: Handler = _
 
   override def channelRead0(ctx: ChannelHandlerContext, msg: HttpObject): Unit = {
 
@@ -83,8 +83,8 @@ private[http4s] class HandlersToNettyAdapter private (
       case _: LastHttpContent =>
         logger.trace("Request finished.")
         currentHandler.onRequestEnd(ctx, currentRequest)
-        currentRequest = null
-        currentHandler = null
+        currentRequest = null.asInstanceOf[HttpRequest]
+        currentHandler = null.asInstanceOf[Handler]
       case _ =>
     }
   }

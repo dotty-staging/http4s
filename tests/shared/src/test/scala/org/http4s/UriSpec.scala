@@ -155,7 +155,7 @@ class UriSpec extends Http4sSuite {
       test("Uri should fail to parse portif it's not a number or an empty String") {
         forAll(
           Gen.alphaNumStr.suchThat(str =>
-            str.nonEmpty && Either.catchOnly[NumberFormatException](str.toInt).isLeft
+            str.nonEmpty && Either.catchOnly[NumberFormatException | Null](str.toInt).isLeft
           )
         ) { (notNumber: String) =>
           val uri: ParseResult[Uri] = Uri.fromString(s"http://localhost:$notNumber/")
@@ -1077,7 +1077,7 @@ class UriSpec extends Http4sSuite {
     }
     test("Uri.withFragment convenience method should set no Fragment on a null String") {
       val u = Uri(path = Uri.Path.Root, fragment = Some("adjakda"))
-      val evilString: String = null
+      val evilString: String = null.asInstanceOf[String]
       val updated = u.withFragment(evilString)
       assertEquals(updated.renderString, "/")
     }

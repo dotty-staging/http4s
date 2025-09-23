@@ -131,7 +131,7 @@ object MimeLoader {
   def mkThreadUnsafeLazyVal(name: String, tpe: Type, value: Tree): List[Tree] = {
     val _name = s"_$name"
     List(
-      VAR(_name, tpe).withFlags(Flags.PRIVATE) := NULL,
+      VAR(_name, tpe).withFlags(Flags.PRIVATE) := WILDCARD,
       DEF(name, tpe) := BLOCK(
         List(
           IF(REF(_name).OBJ_EQ(NULL))

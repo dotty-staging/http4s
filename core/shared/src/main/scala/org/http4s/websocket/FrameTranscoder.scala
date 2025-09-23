@@ -23,7 +23,7 @@ import java.nio.ByteBuffer
 private[http4s] object FrameTranscoder {
   final class TranscodeError(val message: String) extends Exception(message)
 
-  private def decodeBinary(in: ByteBuffer, mask: Array[Byte]) = {
+  private def decodeBinary(in: ByteBuffer, mask: Array[Byte] | Null) = {
     val data = new Array[Byte](in.remaining)
     in.get(data)
     if (mask != null) // We can use the charset decode
@@ -151,7 +151,7 @@ class FrameTranscoder(val isClient: Boolean) {
     * @param in ByteBuffer of immediately available data
     * @return optional message if enough data was available
     */
-  def bufferToFrame(in: ByteBuffer): WebSocketFrame =
+  def bufferToFrame(in: ByteBuffer): WebSocketFrame | Null =
     if (in.remaining < 2 || FrameTranscoder.getMsgLength(in) < 0)
       null
     else {

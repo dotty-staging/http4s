@@ -36,7 +36,7 @@ trait MessageFailure extends RuntimeException {
 
   def cause: Option[Throwable]
 
-  override final def getCause: Throwable = cause.orNull
+  override final def getCause: Throwable | Null = cause.orNull
 
   /** Provides a default rendering of this failure as a [[Response]]. */
   def toHttpResponse[F[_]](httpVersion: HttpVersion): Response[F]

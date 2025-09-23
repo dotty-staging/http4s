@@ -34,7 +34,7 @@ class WebSocketSuite extends Http4sSuite {
   private def helloTxt = Array(0x81, 0x05, 0x48, 0x65, 0x6c, 0x6c, 0x6f).map(_.toByte)
 
   def decode(msg: Array[Byte], isClient: Boolean): WebSocketFrame =
-    new FrameTranscoder(isClient).bufferToFrame(ByteBuffer.wrap(msg))
+    new FrameTranscoder(isClient).bufferToFrame(ByteBuffer.wrap(msg)).nn
 
   def encode(msg: WebSocketFrame, isClient: Boolean): Array[Byte] = {
     val msgs = new FrameTranscoder(isClient).frameToBuffer(msg)

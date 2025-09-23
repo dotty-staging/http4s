@@ -49,7 +49,7 @@ class MetricsOpsSpec extends Http4sSuite {
 
         val excludeUUIDs: String => Boolean = { (str: String) =>
           Either
-            .catchOnly[IllegalArgumentException](UUID.fromString(str))
+            .catchOnly[IllegalArgumentException | Null](UUID.fromString(str))
             .isRight
         }
 

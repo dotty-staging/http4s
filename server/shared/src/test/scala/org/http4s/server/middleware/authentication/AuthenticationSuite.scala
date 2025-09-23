@@ -209,7 +209,7 @@ class AuthenticationSuite extends Http4sSuite {
           val req2 = Request[IO](uri = uri"/", headers = Headers(header))
           digest(req2).flatMap { res2 =>
             if (withReplay) digest(req2).map(res3 => (res2, res3))
-            else IO.pure((res2, null))
+            else IO.pure((res2, null.asInstanceOf[Response[IO]]))
           }
 
         }
